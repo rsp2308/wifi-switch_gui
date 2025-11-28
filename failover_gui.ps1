@@ -7,7 +7,8 @@ $script:usb = "Ethernet 2"
 $script:wifiSSID = "YOUR_WIFI_SSID"
 
 # Load settings from file if exists
-$settingsFile = Join-Path $PSScriptRoot "settings.json"
+$scriptPath = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Definition }
+$settingsFile = Join-Path $scriptPath "settings.json"
 if (Test-Path $settingsFile) {
     try {
         $settings = Get-Content $settingsFile | ConvertFrom-Json
@@ -308,7 +309,7 @@ $timer.Add_Tick({
     if ($active -eq $script:wifi) {
         $statusLabel.Text = "Status: WiFi Active"
         $statusLabel.ForeColor = [System.Drawing.Color]::Green
-        $wifiStatusLabel.Text = "WiFi: ✓ Connected`nStatus: Active"
+        $wifiStatusLabel.Text = "WiFi: ✓ Connected" + [Environment]::NewLine + "Status: Active"
         $wifiStatusLabel.ForeColor = [System.Drawing.Color]::Green
         $usbStatusLabel.Text = "USB: Standby"
         $usbStatusLabel.ForeColor = [System.Drawing.Color]::Gray
@@ -328,9 +329,9 @@ $timer.Add_Tick({
     elseif ($active -eq $script:usb) {
         $statusLabel.Text = "Status: USB Tethering Active (WiFi Down)"
         $statusLabel.ForeColor = [System.Drawing.Color]::Red
-        $wifiStatusLabel.Text = "WiFi: ✗ Disconnected`nStatus: Reconnecting..."
+        $wifiStatusLabel.Text = "WiFi: ✗ Disconnected" + [Environment]::NewLine + "Status: Reconnecting..."
         $wifiStatusLabel.ForeColor = [System.Drawing.Color]::Red
-        $usbStatusLabel.Text = "USB: ✓ Connected`nStatus: Active"
+        $usbStatusLabel.Text = "USB: ✓ Connected" + [Environment]::NewLine + "Status: Active"
         $usbStatusLabel.ForeColor = [System.Drawing.Color]::DarkOrange
         
         if ($script:firstRun) {

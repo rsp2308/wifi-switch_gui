@@ -1,0 +1,13 @@
+# Executables (optional - remove if you want to include them)
+# *.exe
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp

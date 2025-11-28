@@ -15,17 +15,20 @@ Automatic WiFi failover system that switches to USB tethering when WiFi is down 
 ## Versions
 
 ### Console Version (`failover.exe`)
-- Runs with visible console window
-- Shows timestamped logs for all events
-- Minimal, clean logging (only shows changes)
-- Perfect for background monitoring
+- ✅ Runs with visible console window
+- ✅ Shows timestamped logs for all events
+- ✅ Minimal, clean logging (only shows changes)
+- ✅ Perfect for background monitoring
+- ✅ **Fully working and tested**
 
-### GUI Version (`failover_gui.exe`)
+### GUI Version (`failover_gui.ps1`)
+- Run directly with: `powershell -ExecutionPolicy Bypass -File failover_gui.ps1`
 - Modern Windows Forms interface
 - Visual status indicators for WiFi and USB
 - Real-time activity log with color coding
 - Start/Stop controls
 - Clear log functionality
+- **Note:** Run the .ps1 file directly for best compatibility
 
 ## How It Works
 
